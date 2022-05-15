@@ -25,7 +25,7 @@ class _AuthPageState extends State<AuthPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Stech App',
+            Text('Kolektif',
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.w600,

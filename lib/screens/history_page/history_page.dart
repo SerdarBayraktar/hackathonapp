@@ -21,7 +21,7 @@ class _HistoryPageState extends State<HistoryPage> {
         elevation: 0,
       ),
       content: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance.collection("posts").where('likes',arrayContains: Values.uid).snapshots(),
+          stream: FirebaseFirestore.instance.collection("posts").where('likes',arrayContains: Values.uid).where('appropriate',isEqualTo: "1").snapshots(),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
               return Text(

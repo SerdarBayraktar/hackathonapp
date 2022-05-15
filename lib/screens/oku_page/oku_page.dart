@@ -34,7 +34,7 @@ class _OkuPageState extends State<OkuPage> {
         ],
       ),
       content: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection("posts").snapshots(),
+        stream: FirebaseFirestore.instance.collection("posts").where('appropriate',isEqualTo: "1").snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Text(
