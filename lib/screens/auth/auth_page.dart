@@ -57,7 +57,8 @@ class _AuthPageState extends State<AuthPage> {
             ),
             SizedBox(height: 50.h,),
             CustomTextFormField(
-            label: "Şifre",
+              label: '',
+            hintText: "Şifre",
             controller: passwordController,
             isPassword: true,
             validator: (String? val) {
@@ -78,7 +79,7 @@ class _AuthPageState extends State<AuthPage> {
                   color: AppColors.white,
                   borderRadius: BorderRadius.all(Radius.circular(20.0))
               ),              child: InkWell(
-                child: Center(child: Text('Giris Yap')),
+                child: Center(child: Text('Giriş Yap')),
                 onTap: auth,
               ),
             )
@@ -91,6 +92,6 @@ class _AuthPageState extends State<AuthPage> {
     UserCredential user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text.toString(), password: passwordController.text.toString());
     print(user.user!.uid);
     Values.uid = user.user!.uid;
-    Navigator.pushNamed(context, '/mainScreen');
+    Navigator.pushNamed(context, '/oku');
   }
 }

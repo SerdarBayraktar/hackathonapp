@@ -36,29 +36,37 @@ class _HistoryPageState extends State<HistoryPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(30.0),
-                          child: Container(
-                              width: 280.w,
-                              child: Image.network(doc['url'])),
+                          padding: const EdgeInsets.fromLTRB(30,30,0,10),
+                          child: ClipRect(
+                            child: Align(
+                              alignment: Alignment.center,
+                              widthFactor: 1.0,
+                              heightFactor: 0.5,
+                              child: Container(
+                                  width: 280.w,
+                                  child: Image.network(doc['url'])),
+                            ),
+                          ),
                         ),
                         Row(
                           children: [
-
                             Padding(
                               padding: const EdgeInsets.fromLTRB(30,0,0,0),
                               child: Text(doc['name'].toString()+ ' : ',
                                 style: TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 16,
                                     fontWeight: FontWeight.w700
                                 ),
                               ),
                             ),
-                            Container(
-                              child: Text(doc['description'].toString(),
-                                maxLines: 3,
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w300
+                            Expanded(
+                              child: Container(
+                                child: Text(doc['description'].toString(),
+                                  maxLines: 3,
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w300
+                                  ),
                                 ),
                               ),
                             ),

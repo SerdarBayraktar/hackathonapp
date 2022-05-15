@@ -17,7 +17,15 @@ class _OkuPageState extends State<OkuPage> {
   @override
   Widget build(BuildContext context) {
     return MainLayout(
+      button: FloatingActionButton(
+        onPressed: () async {
+          Navigator.pushNamed(context, '/yaz');
+        },
+        child: Icon(Icons.edit,color: AppColors.black,),
+        backgroundColor: AppColors.white,
+      ),
       appbar: AppBar(
+        automaticallyImplyLeading: false,
         elevation: 0,
         actions: [
           IconButton(onPressed: (){
@@ -41,10 +49,17 @@ class _OkuPageState extends State<OkuPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(30.0),
-                        child: Container(
-                          width: 280.w,
-                            child: Image.network(doc['url'])),
+                        padding: const EdgeInsets.fromLTRB(30,30,0,10),
+                        child: ClipRect(
+                          child: Align(
+                            alignment: Alignment.center,
+                            widthFactor: 1.0,
+                            heightFactor: 0.5,
+                            child: Container(
+                              width: 280.w,
+                                child: Image.network(doc['url'])),
+                          ),
+                        ),
                       ),
                       Row(
                         children: [
@@ -52,7 +67,7 @@ class _OkuPageState extends State<OkuPage> {
                             padding: const EdgeInsets.fromLTRB(30,0,0,0),
                             child: Text(doc['name'].toString()+ ' : ',
                               style: TextStyle(
-                                fontSize: 14,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w700
                               ),
                             ),
@@ -62,7 +77,7 @@ class _OkuPageState extends State<OkuPage> {
                               child: Text(doc['description'].toString(),
                                 maxLines: 3,
                                 style: TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 16,
                                     fontWeight: FontWeight.w300
                                 ),
                               ),
