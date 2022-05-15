@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "762904635121",
+    "project_id": "stech-272df",
+    "storage_bucket": "stech-272df.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762904635121:android:5e52101f648fc43836eb50",
+        "android_client_info": {
+          "package_name": "com.stech.hackathon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "762904635121-5sgoqbbo5pb4a9bi2tq9mfchf0rp82d0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCarLZN9PBwJw0FIqyQjypOp3mlAvbRAT8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "762904635121-5sgoqbbo5pb4a9bi2tq9mfchf0rp82d0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
