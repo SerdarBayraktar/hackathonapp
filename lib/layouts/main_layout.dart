@@ -9,10 +9,12 @@ class MainLayout extends StatelessWidget {
   final Widget? bottomSheet;
   final String? imagePath;
   final EdgeInsetsGeometry? padding;
+  final FloatingActionButton? button;
 
   MainLayout(
       {Key? key,
         this.appbar,
+        this.button,
       this.content,
       this.navigationBar,
       this.bottomSheet,
@@ -44,6 +46,7 @@ class MainLayout extends StatelessWidget {
           ),
         ],
       ),
+      floatingActionButton: button,
       bottomNavigationBar: navigationBar,
       bottomSheet: bottomSheet,
     );

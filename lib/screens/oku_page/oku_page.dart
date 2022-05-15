@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hackathon/constants/colors.dart';
 import 'package:hackathon/layouts/main_layout.dart';
 
 import '../../constants/Values.dart';
@@ -42,17 +43,17 @@ class _OkuPageState extends State<OkuPage> {
                       Padding(
                         padding: const EdgeInsets.all(30.0),
                         child: Container(
-                          width: 270.w,
+                          width: 280.w,
                             child: Image.network(doc['url'])),
                       ),
                       Row(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.fromLTRB(30,0,0,0),
                             child: Text(doc['name'].toString()+ ' : ',
                               style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w400
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700
                               ),
                             ),
                           ),
@@ -61,7 +62,6 @@ class _OkuPageState extends State<OkuPage> {
                               child: Text(doc['description'].toString(),
                                 maxLines: 3,
                                 style: TextStyle(
-
                                     fontSize: 14,
                                     fontWeight: FontWeight.w300
                                 ),
@@ -72,11 +72,10 @@ class _OkuPageState extends State<OkuPage> {
                             FirebaseFirestore.instance.collection('posts').doc(doc.id).update({
                               'likes': FieldValue.arrayUnion([Values.uid]),
                             });
-                            
-
                           }, icon: Icon(Icons.add,))
                         ],
                       ),
+                      Divider(color: AppColors.white,thickness: 2,),
                     ],
                   );
                 });

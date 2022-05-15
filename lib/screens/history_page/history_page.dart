@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hackathon/constants/Values.dart';
 import 'package:hackathon/layouts/main_layout.dart';
 
+import '../../constants/colors.dart';
+
 class HistoryPage extends StatefulWidget {
   const HistoryPage({Key? key}) : super(key: key);
 
@@ -36,27 +38,25 @@ class _HistoryPageState extends State<HistoryPage> {
                         Padding(
                           padding: const EdgeInsets.all(30.0),
                           child: Container(
-                              width: 270.w,
+                              width: 280.w,
                               child: Image.network(doc['url'])),
                         ),
                         Row(
                           children: [
+
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.fromLTRB(30,0,0,0),
                               child: Text(doc['name'].toString()+ ' : ',
                                 style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w400
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w700
                                 ),
                               ),
                             ),
                             Container(
-
-                              height: 50.h,
                               child: Text(doc['description'].toString(),
                                 maxLines: 3,
                                 style: TextStyle(
-
                                     fontSize: 14,
                                     fontWeight: FontWeight.w300
                                 ),
@@ -64,6 +64,8 @@ class _HistoryPageState extends State<HistoryPage> {
                             ),
                           ],
                         ),
+                        SizedBox(height: 25,),
+                        Divider(color: AppColors.white,thickness: 2,),
                       ],
                     );
                   });

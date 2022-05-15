@@ -25,7 +25,38 @@ class _YazState extends State<Yaz> {
   @override
   Widget build(BuildContext context) {
     return MainLayout(
+      button: FloatingActionButton(
+        onPressed: () async {
+          int now = DateTime.now().millisecondsSinceEpoch;
+          FirebaseStorage _storage = FirebaseStorage.instance;
+          File photo = File(path!);
+          //final fileName = basename(photo!.path);
+          //final destination = 'files/$fileName';
+          try {
+            final ref = _storage
+                .ref('images/')
+                .child(now.toString());
+            await ref.putFile(photo).then((p0) {
+              _storage.ref('images/').child(now.toString()).getDownloadURL().then((url) {
 
+                FirebaseFirestore.instance.collection('posts').doc().set(
+                    {
+                      'description':textController.text.toString(),
+                      'name': value ? 'Anonim' : nameController.text.toString(),
+                      'url': url,
+                      'likes': []
+                    }
+                );
+              });
+            });
+            Navigator.pop(context);
+          } catch (e) {
+            print('error occured');
+          }
+        },
+        child: Icon(Icons.send,color: AppColors.black,),
+        backgroundColor: AppColors.white,
+      ),
       content: Column(
         children: [
           Container(
@@ -94,90 +125,39 @@ class _YazState extends State<Yaz> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              InkWell(
-                onTap: () async {
-                  final ImagePicker _picker = ImagePicker();
-                  // Pick an image
-                  // Capture a photo
-                  _picker.pickImage(source: ImageSource.camera).then((value) {
-                    path = value?.path;
+              IconButton(
+                  onPressed: (){
+                    final ImagePicker _picker = ImagePicker();
+                    // Pick an image
+                    // Capture a photo
+                    _picker.pickImage(source: ImageSource.camera).then((value) {
+                      path = value?.path;
 
-                    print(value?.path);
+                      print(value?.path);
 
-                  });
+                    });
                   },
-                child: Container(
-                  width: 140.w,
-                  height: 100.h,
-                  decoration: BoxDecoration(
-                      color: AppColors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(20.0))
-                  ),
-                  child: Center(
-                    child: Text(
-                        'Pick from Camera'
-                    ),
-                  ),
-                ),
+                  icon: Icon(Icons.camera)
               ),
               SizedBox(width: 30.w,),
-              InkWell(
-                onTap: () async {
-
-                  final ImagePicker _picker = ImagePicker();
-                  // Pick an image
-                  _picker.pickImage(source: ImageSource.gallery).then((value) {
-                    path = value?.path;
-                    print(value?.path);
-                  });
+              IconButton(
+                  onPressed: (){
+                    final ImagePicker _picker = ImagePicker();
+                    // Pick an image
+                    _picker.pickImage(source: ImageSource.gallery).then((value) {
+                      path = value?.path;
+                      print(value?.path);
+                    });
                   },
-                child: Container(
-                  width: 140.w,
-                  height: 100.h,
-                  decoration: BoxDecoration(
-                      color: AppColors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(20.0))
-                  ),
-                  child: Center(
-                    child: Text(
-                        'Pick from gallery'
-                    ),
-                  ),
-                ),
+                  icon: Icon(Icons.folder)
               ),
 
             ],
           ),
-          Padding(
+          /*Padding(
             padding: const EdgeInsets.all(20.0),
             child: InkWell(
               onTap: () async {
-                int now = DateTime.now().millisecondsSinceEpoch;
-                FirebaseStorage _storage = FirebaseStorage.instance;
-                File photo = File(path!);
-                //final fileName = basename(photo!.path);
-                //final destination = 'files/$fileName';
-                try {
-                  final ref = _storage
-                  .ref('images/')
-                      .child(now.toString());
-                  await ref.putFile(photo).then((p0) {
-                    _storage.ref('images/').child(now.toString()).getDownloadURL().then((url) {
-
-                      FirebaseFirestore.instance.collection('posts').doc().set(
-                          {
-                            'description':textController.text.toString(),
-                            'name': value ? 'Anonim' : nameController.text.toString(),
-                            'url': url,
-                            'likes': []
-                          }
-                      );
-                    });
-                  });
-                  Navigator.pop(context);
-                } catch (e) {
-                  print('error occured');
-                }
 
               },
               child: Container(
@@ -194,7 +174,7 @@ class _YazState extends State<Yaz> {
                 ),
               ),
             ),
-          ),
+          ),*/
         ],
       ),
     );
