@@ -32,27 +32,7 @@ class _YazState extends State<Yaz> {
           File photo = File(path!);
           //final fileName = basename(photo!.path);
           //final destination = 'files/$fileName';
-          try {
-            final ref = _storage
-                .ref('images/')
-                .child(now.toString());
-            await ref.putFile(photo).then((p0) {
-              _storage.ref('images/').child(now.toString()).getDownloadURL().then((url) {
 
-                FirebaseFirestore.instance.collection('posts').doc().set(
-                    {
-                      'description':textController.text.toString(),
-                      'name': value ? 'Anonim' : nameController.text.toString(),
-                      'url': url,
-                      'likes': []
-                    }
-                );
-              });
-            });
-            Navigator.pop(context);
-          } catch (e) {
-            print('error occured');
-          }
         },
         child: Icon(Icons.send,color: AppColors.black,),
         backgroundColor: AppColors.white,
@@ -127,15 +107,7 @@ class _YazState extends State<Yaz> {
             children: [
               IconButton(
                   onPressed: (){
-                    final ImagePicker _picker = ImagePicker();
-                    // Pick an image
-                    // Capture a photo
-                    _picker.pickImage(source: ImageSource.camera).then((value) {
-                      path = value?.path;
 
-                      print(value?.path);
-
-                    });
                   },
                   icon: Icon(Icons.camera)
               ),
